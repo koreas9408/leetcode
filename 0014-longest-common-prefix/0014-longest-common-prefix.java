@@ -20,7 +20,7 @@ class Solution {
         for (char c : charArray1) {
             for (int i = 0; i < strs.length; i++) {
                 char[] charArray = strs[i].toCharArray();
-                
+                if (charArray.length == 0) break;
                 if (c == charArray[cnt]) {
                     result++;
                 }
