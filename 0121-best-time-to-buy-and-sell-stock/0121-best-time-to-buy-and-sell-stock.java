@@ -1,24 +1,23 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        if (prices.length <= 1) return 0;
-        int buyPrice = 100_000;
-        int sellPrice = 0;
-
-        int idx = 0;
+        // 처음 가격을 담아주고
+        int buyPrice = prices[0];
+        // 다음에 더 저렴한 가격이 있다면 해당 가격으로 담아준다.
+        int profit = 0;
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i] == 0) continue;
-            if (buyPrice > prices[i] && (i != prices.length-1)) {
-                buyPrice = prices[i];
-                idx = i;
+            // 현재가격
+            int currentPrice = prices[i];
+            
+            if (currentPrice < buyPrice) {
+                buyPrice = currentPrice;
+            }
+
+            // 현재가격과 - 내가산가격 = 이익(profit)
+            if (currentPrice - buyPrice > profit) {
+                profit = currentPrice - buyPrice;
             }
         }
 
-        for (; idx < prices.length; idx++) {
-            if (sellPrice < prices[idx]) {
-                sellPrice = prices[idx];
-            }
-        }
-
-        return sellPrice - buyPrice;
+        return profit;
     }
 }
