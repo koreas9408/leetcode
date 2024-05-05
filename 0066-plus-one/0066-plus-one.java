@@ -1,11 +1,20 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        String str = "";
-        for (int i = 0; i < digits.length; i++) {
-            str += String.valueOf(digits[i]);
-        }
-        long i = Long.parseLong(str) + 1;
+        int carry = 1;
+        int index = digits.length - 1;
 
-        return Stream.of(String.valueOf(i).split("")).mapToInt(s -> Math.toIntExact(Long.parseLong(s))).toArray();
+        while (index >= 0 && carry > 0) {
+            digits[index] = (digits[index] + 1) % 10;
+            carry = (digits[index] == 0) ? 1 : 0;
+
+            index--;
+        }
+
+        if (carry > 0) {
+            digits = new int[digits.length + 1];
+            digits[0] = 1;
+        }
+
+        return digits;
     }
 }
