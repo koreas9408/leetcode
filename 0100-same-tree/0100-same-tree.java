@@ -21,7 +21,7 @@ class Solution {
             return false;
         }
 
-        if(p.val == q.val) {
+        if (p.val == q.val) {
             return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
         } else {
             return false;
